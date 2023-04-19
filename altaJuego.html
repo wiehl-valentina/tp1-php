@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear juego</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body class="newgame">
+    <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
+    
+    <form class="add">
+        <h2>Agregar juego nuevo</h2>
+        <input type="text" placeholder="Nombre" required>
+        <label for="file">Imagen</label>
+        <input type="file" placeholder="Imagen" required>
+        <input type="text" placeholder="Descripcion"required>
+
+        <select id="plat" name="plataforma" required>
+            <option value="">Selecciona una plataforma</option>
+            <option value="plat1">Plataforma 1</option>
+            <option value="plat2">Plataforma 2</option>
+        </select>
+
+        <input type="text" placeholder="URL" required>
+
+        <select id="genero" name="genero">
+            <option value="empty">Selecciona un genero</option>
+            <option value="gen1">Genero 1</option>
+            <option value="gen2">Genero 2</option>
+        </select>    
+        <input type="submit" value="Agregar juego" class="boton">
+    </form>
+    <a href="index.html"><button class="boton">Volver</button></a>
+
+    <footer>Andres Hoyos Garcia - 2023</footer>
+</body>
+</html>

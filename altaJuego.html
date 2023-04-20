@@ -6,24 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear juego</title>
     <link rel="stylesheet" href="estilos.css">
+    
 </head>
 <body class="newgame">
     <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
     
-    <form class="add">
+    <form class="add" id="add">
         <h2>Agregar juego nuevo</h2>
-        <input type="text" placeholder="Nombre" required>
+        <input type="text" placeholder="Nombre" id="nombre" name="nombre"  class="text-type" required>
         <label for="file">Añadir imagen</label>
-        <input type="file" placeholder="Imagen" required>
-        <textarea name="desc" id="desc" placeholder="Ingrese una descripcion" cols="10" rows="8" required wrap="hard"></textarea>
+        <input type="file" placeholder="Imagen" name="imagen" required>
+        <textarea name="desc" id="desc" name="desc"  class="text-type" placeholder="Ingrese una descripcion" cols="10" rows="8" wrap="hard" maxlength="255" required ></textarea>
 
         <select id="plat" name="plataforma" required>
             <option value="">Selecciona una plataforma</option>
             <option value="plat1">PC</option>
-            <option value="plat2">PS</option>
+            <option value="plat2">PlayStation</option>
         </select>
 
-        <input type="text" placeholder="URL" required>
+        <input type="url" placeholder="URL" name="url" id="url" class="text-type" required>
 
         <select id="genero" name="genero">
             <option value="empty">Selecciona un genero</option>
@@ -35,5 +36,9 @@
     <a href="index.html"><button class="boton">Volver</button></a>
 
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
+
+    <script src="script.js" type="text/javascript"></script>
 </body>
+
 </html>
+

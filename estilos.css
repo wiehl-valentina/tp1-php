@@ -19,18 +19,38 @@ header{
 .filters{
     margin-top: -0.5em;
     display: flex;
-    flex-direction: row;
     align-items:center;
-    justify-content:space-around;
+    justify-content:center;
     background-color:#191923;
     color: antiquewhite;
     width: 100vw;
     box-shadow: 0 10px 20px rgb(61, 62, 64);
 }
 
-#ordenar{
-    width: fit-content;
+.filters p {
+    font-size: 1em;
+    text-transform: uppercase;
+    text-decoration: underline;
+    margin-right: 2em;
 }
+
+.text-input {
+    width: 14em;
+    height: 2em;
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    margin-right: 2em;
+}
+
+.filters select {
+    height: 2.3em;
+    width: 8em;
+    outline: none;
+    border-radius: 3px;
+    margin-right: 2.5em;
+}
+
 
 .add h2 {
     text-align: center;
@@ -38,7 +58,7 @@ header{
     font-size: 1.4em;
 }
 
-.add{
+.add {
     display: flex;
     flex-direction: column;
     justify-content:left;
@@ -135,13 +155,13 @@ footer{
     border-style: solid;
     border-color: aliceblue;
     border-radius: 1em;
-    padding: 1em 2em;
+    padding: 0.6em 2em;
     color: aliceblue;
     margin: 10px;
 }
 
 .boton:hover{
-    background-color: darkslateblue;
+    background-color: #272E4D;
 }
 
 .newgame{

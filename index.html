@@ -4,21 +4,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear juego</title>
+    <title>STEAM</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
     <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
     
     <form class="filters">
-        <p>Buscar juego</p>
-        <input type="text" placeholder="Nombre">
-        <input type="text" placeholder="Genero">
+        <p>Buscar juego:</p>
+        <input type="text" placeholder="Nombre" class="text-input">
+        <input type="text" placeholder="Genero" class="text-input">
+
+        <select name="plataforma" id="plataforma">
+            <option value="empty">Plataforma</option>
+            <option value="pc">PC</option>
+            <option value="ps">PlayStation</option>
+
+        </select>
 
         <select id="ordenar" name="ordenar">
             <option value="empty">Ordenar</option>
-            <option value="gen1">A-Z</option>
-            <option value="gen2">Z-A</option>
+            <option value="a-z">A-Z</option>
+            <option value="z-a">Z-A</option>
         </select>    
         <input type="submit" value="Filtrar" class="boton">
     </form>

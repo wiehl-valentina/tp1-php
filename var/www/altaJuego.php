@@ -26,7 +26,7 @@
             <option value="3">Mobile</option>
         </select>
 
-        <input type="url" placeholder="URL" name="url" id="url" class="text-type" required>
+        <input type="url" placeholder="https://www.example.com" name="url" id="url" class="text-type" required>
 
         <select id="genero" name="genero">
             <option value="">Selecciona un genero</option>

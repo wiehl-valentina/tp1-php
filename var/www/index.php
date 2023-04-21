@@ -64,7 +64,7 @@
                 echo "<li><h2>".$row['nombre']."</h2></li>";
                 echo "<li><p>".$row['genero']."</p></li>";
                 echo "<li><p>".$row['plataforma']."</p></li>";
-                echo '<li><a href="'.$row['url'].'">Sitio web</a></li>';
+                echo '<li><a href="'.$row['url'].'" target="blank">Sitio web</a></li>';
                 echo "<li><p>".$row['descripcion']."</p></li>";
                 echo "</ul></div>";
             }

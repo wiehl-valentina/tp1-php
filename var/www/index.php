@@ -42,31 +42,37 @@
                 <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ullam aperiam est deleniti quidem debitis expedita a quibusdam facere sint. Placeat minus qui voluptatibus ipsa? Illo eum ducimus consequuntur rem?</p></li>
             </ul>
         </div>
+        <?php
+            $host = 'localhost';
+            $dbname = 'juegos_online';
+            $user = 'root';
+            $pass = '';
+            $con = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
 
-        <div class="item">
-            <img src="https://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6" alt="CS:GO">
-            <ul>
-                <li><h2>Nombre</h2></li>
-                <li><p>Genero</p></li>
-                <li><p>Plataforma</p></li>
-                <li><a href="">URL</a></li>
-                <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ullam aperiam est deleniti quidem debitis expedita a quibusdam facere sint. Placeat minus qui voluptatibus ipsa? Illo eum ducimus consequuntur rem?</p></li>
-            </ul>
-        </div>
+            // include "conexionBD.php";
+            $select = $con->prepare
+            ("SELECT J.nombre, descripcion, url, G.nombre AS genero, P.nombre as plataforma
+            FROM juegos J 
+            JOIN generos G
+            ON J.id_genero = G.id
+            JOIN plataformas P 
+            ON J.id_plataforma = P.id;");
+            $select->execute();
 
-        <div class="item">
-            <img src="https://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6" alt="CS:GO">
-            <ul>
-                <li><h2>Nombre</h2></li>
-                <li><p>Genero</p></li>
-                <li><p>Plataforma</p></li>
-                <li><a href="">URL</a></li>
-                <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ullam aperiam est deleniti quidem debitis expedita a quibusdam facere sint. Placeat minus qui voluptatibus ipsa? Illo eum ducimus consequuntur rem?</p></li>
-            </ul>
-        </div>
+            while($row = $select->fetch(PDO::FETCH_ASSOC)){
+                echo '<div class="item"><ul>';
+                echo "<li><h2>".$row['nombre']."</h2></li>";
+                echo "<li><p>".$row['genero']."</p></li>";
+                echo "<li><p>".$row['plataforma']."</p></li>";
+                echo '<li><a href="'.$row['url'].'">Sitio web</a></li>';
+                echo "<li><p>".$row['descripcion']."</p></li>";
+                echo "</ul></div>";
+            }
+        ?>
+
     </div>
 
-    <a href="altaJuego.html"><button class="boton">Agregar juego</button></a>
+    <a href="altaJuego.php"><button class="boton">Agregar juego</button></a>
 
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
 </body>

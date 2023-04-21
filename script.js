@@ -1,43 +1,41 @@
 const form = document.getElementById('add');
-const inputs = document.querySelectorAll('.text-type');
+const inputs = document.querySelectorAll('.inputs');
 
-const expresiones = {
-    nombre: /^\w$/,
-    desc: /^\w{1,255}$/,
-    url: /^\w{1,80}$/
-}
+// const expresiones = {
+//     nombre: /^\w$/,
+//     desc: /^\w{1,255}$/,
+//     url: /^\w{1,80}$/
+// }
 
-console.log(inputs);
-
-const validarCampo = (expresion, input, campo) => {
-    if (expresion.test(input.value)) {
-        document.getElementById(campo).classList.remove('invalid-input');
-        document.getElementById(campo).classList.add('valid-input');
-    }
-    else {
-        document.getElementById(campo).classList.add('invalid-input');
-        document.getElementById(campo).classList.remove('valid-input');
-    }
-}
-
-const validarFormulario = (e) => {
+function validarFormulario(e) {
     switch (e.target.name) {
         case "nombre":
-            validarCampo(expresiones.nombre, e.target, 'nombre');
+            if (e.target.value == "") {
+                window.alert("Por ingrese un nombre válido.");
+            }
         break;
         case "desc":
-            validarCampo(expresiones.desc, e.target, 'desc');
+            if (e.target.value.length > 255) {
+                window.alert("La descripcion supera el límite de 255 caracteres.");
+            }
         break;
         case "url":
-            validarCampo(expresiones.url, e.target, 'url');
+            if (e.target.value.length > 80) {
+                window.alert("La URL supera el límite de 80 caracteres.");
+            }
+        break;
+        case "plat":
+                if (e.target.value == "empty") {
+                    window.alert("Por favor seleccione una plataforma válida.");
+                }
         break;
     }
  
 }
 
 inputs.forEach((input) => {
-    input.addEventListener('keyup', validarFormulario)
-    input.addEventListener('blur', validarFormulario);
+    input.addEventListener('keyup', validarFormulario())
+    input.addEventListener('blur', validarFormulario());
 })
 
 form.addEventListener('submit', (e) => {

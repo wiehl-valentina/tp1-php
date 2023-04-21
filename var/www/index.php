@@ -11,15 +11,23 @@
 <body>
     <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
     
-    <form class="filters">
+    <form class="filters" action="filter.php" method="POST">
         <p>Buscar juego:</p>
         <input type="text" placeholder="Nombre" class="text-input">
-        <input type="text" placeholder="Genero" class="text-input">
+        
+        <select id="genero" name="genero">
+            <option value="">Genero</option>
+            <option value="1">Disparos</option>
+            <option value="2">Accion</option>
+            <option value="3">Terror</option>
+            <option value="4">Estrategia</option>
+        </select>    
 
         <select name="plataforma" id="plataforma">
-            <option value="empty">Plataforma</option>
-            <option value="pc">PC</option>
-            <option value="ps">PlayStation</option>
+            <option value="">Plataforma</option>
+            <option value="1">PC</option>
+            <option value="2">PlayStation</option>
+            <option value="3">Mobile</option>
         </select>
 
         <select id="ordenar" name="ordenar">

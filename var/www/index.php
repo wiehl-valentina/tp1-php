@@ -40,7 +40,7 @@
     </form>
 
     <div class="lista">
-        <div class="item">
+        <!-- <div class="item">
             <img src="https://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6" alt="CS:GO">
             <ul>
                 <li><h2>Nombre</h2></li>
@@ -49,7 +49,7 @@
                 <li><a href="">URL</a></li>
                 <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ullam aperiam est deleniti quidem debitis expedita a quibusdam facere sint. Placeat minus qui voluptatibus ipsa? Illo eum ducimus consequuntur rem?</p></li>
             </ul>
-        </div>
+        </div> -->
         <?php
             $host = 'localhost';
             $dbname = 'juegos_online';
@@ -67,6 +67,10 @@
             ON J.id_plataforma = P.id;");
             $select->execute();
 
+            $hay_juegos = $con->query('SELECT * FROM juegos;');
+            if ($hay_juegos->rowCount() == 0){
+                echo '<div class="item"><h1>No hay juegos cargados!</h1></div>';
+            }else{
             while($row = $select->fetch(PDO::FETCH_ASSOC)){
                 echo '<div class="item">';
                 echo '<img src="assets/'.$row['imagen'].'">';
@@ -77,6 +81,7 @@
                 echo "<li><p>".$row['descripcion']."</p></li>";
                 echo "</ul></div>";
             }
+        }
         ?>
 
     </div>

@@ -46,7 +46,7 @@ if($_POST){
     $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
     
     $image_file = $_FILES["imagen"];
-    move_uploaded_file($image_file["tmp_name"], __DIR__ . '/assets' . $image_file["name"] );
+    move_uploaded_file($image_file["tmp_name"], __DIR__ . '/assets/' . $image_file["name"] );
 
     $query = "INSERT INTO juegos (nombre, imagen, tipo_imagen, descripcion, url, id_genero, id_plataforma) VALUES ('$nombre', '$fileName', '$fileType', '$desc', '$url', '$genero', '$plat')";
     $con->exec($query);

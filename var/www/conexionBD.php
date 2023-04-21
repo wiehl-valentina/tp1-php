@@ -41,7 +41,14 @@ if($_POST){
     $genero = $_POST["genero"];
     $plat = $_POST["plataforma"];
 
-    $query = "INSERT INTO juegos (nombre, descripcion, url, id_genero, id_plataforma) VALUES ('$nombre', '$desc', '$url', '$genero', '$plat')";
+
+    $fileName = basename($_FILES["imagen"]["name"]); 
+    $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+    
+    $image_file = $_FILES["imagen"];
+    move_uploaded_file($image_file["tmp_name"], __DIR__ . '/assets' . $image_file["name"] );
+
+    $query = "INSERT INTO juegos (nombre, imagen, tipo_imagen, descripcion, url, id_genero, id_plataforma) VALUES ('$nombre', '$fileName', '$fileType', '$desc', '$url', '$genero', '$plat')";
     $con->exec($query);
     header('Location: index.php');
     echo "Juego guardado";

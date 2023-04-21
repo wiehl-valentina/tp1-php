@@ -11,7 +11,7 @@
 <body class="newgame">
     <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
     
-    <form class="add" id="add" action="conexionBD.php" method="POST">
+    <form class="add" id="add" action="conexionBD.php" method="POST" enctype="multipart/form-data">
         <h2>Agregar juego nuevo</h2>
         <input type="text" placeholder="Nombre" id="nombre" name="nombre"  class="text-type" required>
         <label for="file">Añadir imagen</label>

@@ -59,7 +59,7 @@
 
             // include "conexionBD.php";
             $select = $con->prepare
-            ("SELECT J.nombre, descripcion, url, G.nombre AS genero, P.nombre as plataforma
+            ("SELECT J.nombre, descripcion, imagen, tipo_imagen, url, G.nombre AS genero, P.nombre as plataforma
             FROM juegos J 
             JOIN generos G
             ON J.id_genero = G.id
@@ -68,8 +68,9 @@
             $select->execute();
 
             while($row = $select->fetch(PDO::FETCH_ASSOC)){
-                echo '<div class="item"><ul>';
-                echo "<li><h2>".$row['nombre']."</h2></li>";
+                echo '<div class="item">';
+                echo '<img src="assets/'.$row['imagen'].'">';
+                echo "<ul><li><h2>".$row['nombre']."</h2></li>";
                 echo "<li><p>".$row['genero']."</p></li>";
                 echo "<li><p>".$row['plataforma']."</p></li>";
                 echo '<li><a href="'.$row['url'].'" target="blank">Sitio web</a></li>';
@@ -81,7 +82,6 @@
     </div>
 
     <a href="altaJuego.php"><button class="boton">Agregar juego</button></a>
-
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
-</body>
+    </body>
 </html>

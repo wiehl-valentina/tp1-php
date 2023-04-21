@@ -124,7 +124,7 @@ header{
 
 .lista{
     color: black;
-    padding: 2em;
+    padding: 2em 0;
     width: 100vw;
     display: flex;
     flex-flow:wrap;
@@ -138,6 +138,7 @@ header{
     margin: 1em;
     box-shadow: 10px 10px 20px rgb(61, 62, 64);
     width: 23em;
+    overflow:hidden;
 }
 
 .item p{
@@ -145,8 +146,8 @@ header{
 }
 
 .item img{
-    width: 100%;
-    border-radius: 1em 1em 0 0;
+    min-width: 100%;
+    height: 15em;
 }
 
 li{

@@ -34,7 +34,7 @@
         
         <input type="url" placeholder="URL" name="url" id="url" class="input inputs">
         
-        <input type="submit" value="Agregar juego" class="boton">
+        <input type="submit" value="Agregar juego" id="agregar" class="boton">
     </form>
     <a href="index.html"><button class="boton">Volver</button></a>
 

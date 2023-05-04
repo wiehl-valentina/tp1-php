@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STEAM</title>
     <link rel="stylesheet" href="estilos.css">
-    <link rel="icon" type="image/x-icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/2048px-Steam_icon_logo.svg.png">
 </head>
 <body>
     <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
@@ -34,7 +33,7 @@
         <input type="submit" value="Filtrar" class="boton">
     </form>
     <div class="lista">
-        <!-- <div class="item">
+        <div class="item">
             <img src="https://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6" alt="CS:GO">
             <ul>
                 <li><h2>Nombre</h2></li>
@@ -89,5 +88,5 @@
     </div>
     <a href="altaJuego.php"><button class="boton">Agregar juego</button></a>
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
-    </body>
+</body>
 </html>

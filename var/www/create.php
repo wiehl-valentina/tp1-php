@@ -4,12 +4,12 @@
     $desc = $_POST["desc"];
     $url = $_POST["url"];
     $genero = $_POST["genero"];
-    $plat = $_POST["plataforma"];
+    $plat = $_POST["plat"];
 
-    $image = base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
+    $imagen = base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
     $type = $_FILES['imagen']['type'];
 
-    $query = "INSERT INTO juegos (nombre, imagen, tipo_imagen, descripcion, url, id_genero, id_plataforma) VALUES ('$nombre', '$image', '$type', '$desc', '$url', '$genero', '$plat')";
+    $query = "INSERT INTO juegos (nombre, imagen, tipo_imagen, descripcion, url, id_genero, id_plataforma) VALUES ('$nombre', '$imagen', '$type', '$desc', '$url', '$genero', '$plat')";
     
     $con = connect();
     $con -> beginTransaction();

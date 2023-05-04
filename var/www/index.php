@@ -15,18 +15,25 @@
     <form class="filters" action="index.php" method="GET">
         <p>Buscar juego:</p>
         <input name="nombre" type="text" placeholder="Nombre" class="text-input">
-        <select id="genero" name="genero">
-            <option value="">Genero</option>
-            <option value="1">Disparos</option>
-            <option value="2">Accion</option>
-            <option value="3">Terror</option>
-            <option value="4">Estrategia</option>
-        </select>    
-        <select name="plataforma" id="plataforma">
-            <option value="">Plataforma</option>
-            <option value="1">PC</option>
-            <option value="2">PlayStation</option>
-            <option value="3">Mobile</option>
+        <?php 
+            include ('conexionBD.php');
+            $con = connect();
+            $plat = $con -> query("SELECT * FROM plataformas");
+            echo '<select name="plataforma" class="input">';
+            echo '<option value="">Plataforma</option>';        
+            while($row = $plat -> fetch(PDO::FETCH_ASSOC)){ 
+             echo '<option value="' . $row['id'] .'">' . $row["nombre"] . '</option>';
+            } 
+        ?> 
+         </select> 
+        <?php 
+            $genres = $con -> query("SELECT * FROM generos");
+            echo '<select name="genero" class="input">';   
+            echo '<option value="">Genero</option>';        
+            while($row = $genres -> fetch(PDO::FETCH_ASSOC)){ 
+             echo '<option value="' . $row['id'] .'">' . $row["nombre"] . '</option>';
+            } 
+        ?> 
         </select>
         <select id="ordenar" name="ordenar">
             <option value="">Ordenar</option>
@@ -47,7 +54,6 @@
             </ul>
         </div> -->
         <?php
-            include ('conexionBD.php');
             $nombre = $_GET["nombre"];
             $genero = $_GET["genero"];
             $plataforma = $_GET["plataforma"];

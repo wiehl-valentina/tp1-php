@@ -71,9 +71,11 @@
             if ($nombre != ""){
                 $query .= ' WHERE J.nombre LIKE "%'.$nombre.'%"';}
             if ($genero != ""){
-                $query .= ' WHERE J.id_genero LIKE "'.$genero.'"';}
+                if ($nombre != "") {$query .= ' AND';} else {$query .= ' WHERE';}
+                $query .= ' J.id_genero LIKE "'.$genero.'"';}
             if ($plataforma != ""){
-                $query .= ' WHERE J.id_plataforma LIKE "'.$plataforma.'"';}
+                if ($nombre != "" OR $genero != "") {$query .= ' AND';} else {$query .= ' WHERE';}
+                $query .= ' J.id_plataforma LIKE "'.$plataforma.'"';}
             if ($ordenar == "ASC" or $ordenar == "DESC"){
                 $query .= ' ORDER BY J.nombre '.$ordenar;}
             

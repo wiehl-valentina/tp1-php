@@ -68,7 +68,7 @@
             JOIN plataformas P 
             ON J.id_plataforma = P.id";
             
-            if ($nombre != ""){
+            if ($nombre != "" or $nombre != " "){
                 $query .= ' WHERE J.nombre LIKE "%'.$nombre.'%"';}
             if ($genero != ""){
                 if ($nombre != "") {$query .= ' AND';} else {$query .= ' WHERE';}

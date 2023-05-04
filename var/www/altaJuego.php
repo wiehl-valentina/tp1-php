@@ -9,9 +9,11 @@
     
 </head>
 <body class="newgame">
-    <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
+    <header style="box-shadow: 0 10px 20px rgb(61, 62, 64);">
+        <img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em">
+    </header>
     
-    <form id="add">
+    <form class="add" id="add" action="create.php" method="POST" enctype="multipart/form-data">
         <h2>Agregar juego nuevo</h2>
         <input type="text" placeholder="Nombre" id="nombre" name="nombre"  class="input inputs">
  
@@ -25,23 +27,21 @@
             <option value="plat1">PC</option>
             <option value="plat2">PlayStation</option>
         </select>
-      
+
+        <input type="url" placeholder="https://www.example.com" name="url" id="url" class="input inputs" required>
+
         <select id="genero" name="genero" class="input">
-            <option value="empty">Selecciona un genero</option>
-            <option value="gen1">Genero 1</option>
-            <option value="gen2">Genero 2</option>
-        </select>
-        
-        <input type="url" placeholder="URL" name="url" id="url" class="input inputs">
-        
-        <input type="submit" value="Agregar juego" id="agregar" class="boton">
+            <option value="5">Selecciona un genero</option>
+            <option value="1">Disparos</option>
+            <option value="2">Accion</option>
+            <option value="3">Terror</option>
+            <option value="4">Estrategia</option>
+        </select>    
+        <input type="submit" value="Agregar" class="boton">
     </form>
-    <a href="index.html"><button class="boton">Volver</button></a>
-
+    <a href="index.php"><button class="boton">Volver</button></a>
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
-
     <script src="script.js" type="text/javascript"></script>
 </body>
-
 </html>
 

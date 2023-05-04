@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
+    <header>
+        <img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em">
+        <a href="altaJuego.php"><button class="boton" style="scale:120%;margin:0">Agregar juego</button></a>
+    </header>
     <form class="filters" action="index.php" method="GET">
         <p>Buscar juego:</p>
         <input name="nombre" type="text" placeholder="Nombre" class="text-input">
@@ -33,7 +36,7 @@
         <input type="submit" value="Filtrar" class="boton">
     </form>
     <div class="lista">
-        <div class="item">
+        <!-- <div class="item">
             <img src="https://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6" alt="CS:GO">
             <ul>
                 <li><h2>Nombre</h2></li>
@@ -86,7 +89,6 @@
             }
         ?>
     </div>
-    <a href="altaJuego.php"><button class="boton">Agregar juego</button></a>
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
 </body>
 </html>

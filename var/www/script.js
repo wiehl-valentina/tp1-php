@@ -25,6 +25,11 @@ function validarCampo(inputs) {
                     window.alert("La URL supera el máximo de 80 caracteres permitidos.");
                 }
             break;
+            case 'img':
+                if (input.value == "") {
+                    window.alert("Por favor ingrese una imagen.");
+                }
+            break;
         }
     })
 }
@@ -32,7 +37,6 @@ function validarCampo(inputs) {
 
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
     validarCampo(inputs);
 })
 

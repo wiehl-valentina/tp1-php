@@ -19,6 +19,7 @@
             <option value="empty">Plataforma</option>
             <option value="pc">PC</option>
             <option value="ps">PlayStation</option>
+            <option value="mobile">Mobile</option>
         </select>
 
         <select id="ordenar" name="ordenar" class="input">
@@ -65,7 +66,7 @@
         </div>
     </div>
 
-    <a href="altaJuego.html"><button class="boton">Agregar juego</button></a>
+    <a href="altaJuego.php"><button class="boton">Agregar juego</button></a>
 
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
 </body>

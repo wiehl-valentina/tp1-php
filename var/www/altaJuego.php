@@ -11,7 +11,7 @@
 <body class="newgame">
     <header><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em"></header>
     
-    <form class="add" id="add" action="conexionBD.php" method="POST" enctype="multipart/form-data">
+    <form class="add" id="add" action="create.php" method="POST" enctype="multipart/form-data">
         <h2>Agregar juego nuevo</h2>
         <input type="text" placeholder="Nombre" id="nombre" name="nombre"  class="text-type" required>
         <label for="file">Añadir imagen</label>
@@ -29,7 +29,7 @@
         <input type="url" placeholder="https://www.example.com" name="url" id="url" class="text-type" required>
 
         <select id="genero" name="genero">
-            <option value="">Selecciona un genero</option>
+            <option value="5">Selecciona un genero</option>
             <option value="1">Disparos</option>
             <option value="2">Accion</option>
             <option value="3">Terror</option>
@@ -37,13 +37,9 @@
         </select>    
         <input type="submit" value="Agregar juego" class="boton">
     </form>
-
     <a href="index.php"><button class="boton">Volver</button></a>
-
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
-
     <script src="script.js" type="text/javascript"></script>
 </body>
-
 </html>
 

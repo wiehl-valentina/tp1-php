@@ -14,7 +14,7 @@
     $con = connect();
     $con -> beginTransaction();
     $con->exec($query);
-    header("Location: index.php?msg=Juego creado correctamente");
+    header("Location: index.php?msg='Juego creado correctamente'");
     $con->commit();
     $con=null;
 ?>

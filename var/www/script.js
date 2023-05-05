@@ -11,12 +11,12 @@ function validarCampo(inputs) {
                 }
             break;
             case 'desc':
-                if (input.value.length > 255) {
+                if (input.value.length == "" || input.value.length > 255) {
                     window.alert("La descripcion supera el máximo de 255 caracteres permitidos.");
                 }
             break;
             case 'plat':
-                if (input.value == "empty") {
+                if (input.value == "") {
                     window.alert("Por favor seleccione una plataforma válida.");
                 }
             break;
@@ -33,8 +33,6 @@ function validarCampo(inputs) {
         }
     })
 }
-
-
 
 form.addEventListener('submit', (e) => {
     validarCampo(inputs);

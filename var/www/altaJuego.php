@@ -9,8 +9,8 @@
     
 </head>
 <body class="newgame">
-    <header style="box-shadow: 0 10px 20px rgb(61, 62, 64);">
-        <img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em">
+    <header style="box-shadow: 0 25px 45px rgb(50, 50, 52); height: 4.6em;">
+        <a href="index.php"><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em" style="margin-top:0.7em"></a>
     </header>
     
     <form action="create.php" method="POST" enctype="multipart/form-data" class="add" id="add">
@@ -46,7 +46,7 @@
         ?> 
         <input type="submit" value="Agregar Juego" id="agregar" class="boton">
     </form>
-    <a href="index.php"><button class="boton">Volver</button></a>
+    <a href="index.php"><button class="boton-ppal">Volver</button></a>
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
     <script src="script.js" type="text/javascript"></script>
 </body>

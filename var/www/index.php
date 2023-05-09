@@ -4,45 +4,47 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STEAM</title>
+    <title>Bienvenidos a Steam</title>
+    <link rel="icon" href="https://store.steampowered.com/favicon.ico">
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
     <header>
-        <img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em">
-        <a href="altaJuego.php"><button class="boton" style="scale:120%;margin:0">Agregar juego</button></a>
+        <a href="index.php"><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em" style="margin-top: 0.2em;"></a>
+        <a href="altaJuego.php"><button class="boton-ppal" style="scale:120%;margin:0">Agregar juego</button></a>
     </header>
     <form class="filters" action="index.php" method="GET">
         <p>Buscar juego:</p>
 
-        <input name="nombre" type="text" placeholder="Nombre" class="text-input">
+        <input name="nombre" type="text" placeholder="Nombre" class="text-input" value="<?php echo $_GET['nombre']?>">
         
         <?php 
             include ('conexionBD.php');
             $con = connect();
-            $plat = $con -> query("SELECT * FROM plataformas");
-            echo '<select name="plataforma" class="input">';
-            echo '<option value="">Plataforma</option>';        
-            while($row = $plat -> fetch(PDO::FETCH_ASSOC)){ 
-             echo '<option value="' . $row['id'] .'">' . $row["nombre"] . '</option>';
-            } 
-        ?> 
-         </select> 
+            $plat = $con -> query("SELECT * FROM plataformas"); ?>
+            <select name="plataforma" class="input">
+            <option value=>Plataforma</option>        
+            <?php while($row = $plat -> fetch(PDO::FETCH_ASSOC)){?><option
+            <?php if ($_GET['plataforma'] == $row["id"]) { ?>selected="true" <?php }; ?>value="<?php echo $row['id'];?>"><?php echo $row["nombre"];?>
+            </option>
+            <?php }; ?>
+        </select> 
         <?php 
-            $genres = $con -> query("SELECT * FROM generos");
-            echo '<select name="genero" class="input">';   
-            echo '<option value="">Genero</option>';        
-            while($row = $genres -> fetch(PDO::FETCH_ASSOC)){ 
-             echo '<option value="' . $row['id'] .'">' . $row["nombre"] . '</option>';
-            } 
-        ?> 
+            $genres = $con -> query("SELECT * FROM generos"); ?>
+            <select name="genero" class="input">
+            <option value=>Genero</option>
+            <?php while($row = $genres -> fetch(PDO::FETCH_ASSOC)){?><option 
+            <?php if ($_GET['genero'] == $row["id"]) { ?>selected="true" <?php }; ?>value="<?php echo $row['id'];?>"><?php echo $row["nombre"];?>
+            </option>
+            <?php }; ?>  
         </select>
         <select id="ordenar" name="ordenar">
             <option value="">Ordenar</option>
-            <option value="ASC">A-Z</option>
-            <option value="DESC">Z-A</option>
+            <option <?php if ($_GET['ordenar'] == "ASC") { ?>selected="true" <?php }; ?>value="ASC">A-Z</option>
+            <option <?php if ($_GET['ordenar'] == "DESC") { ?>selected="true" <?php }; ?>value="DESC">Z-A</option>
         </select>
         <input type="submit" value="Filtrar" class="boton">
+        <a href="index.php"><input type="button" value="Limpiar Filtros" class="boton" style="padding: 0.3em 0.6em"></a>
     </form>
     <div class="lista">
         <!-- <div class="item">

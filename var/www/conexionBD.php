@@ -29,6 +29,7 @@ function loadData(){
         $con->exec("INSERT INTO generos (id, nombre) VALUES (3, 'Accion')");
         $con->exec("INSERT INTO generos (id, nombre) VALUES (4, 'Terror')");
         $con->exec("INSERT INTO generos (id, nombre) VALUES (5, 'Estrategia')");
+        $con->exec("INSERT INTO generos (id, nombre) VALUES (6, 'Supervivencia')");
         echo "<h1 style='
         color:white;
         background:black;

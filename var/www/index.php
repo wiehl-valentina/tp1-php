@@ -16,7 +16,7 @@
     <form class="filters" action="index.php" method="GET">
         <p>Buscar juego:</p>
 
-        <input name="nombre" type="text" placeholder="Nombre" class="text-input" value="<?php echo $_GET['nombre'] ?? "";?>">
+        <input name="nombre" type="text" placeholder="Nombre" class="text-input" value="<?php echo $_GET['nombre'] ?? "";?>" style="margin-right:2.5em;height: 2.2em;">
         
         <?php 
             include ('conexionBD.php');

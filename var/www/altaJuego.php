@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear juego</title>
     <link rel="stylesheet" href="estilos.css">
-    
+    <link rel="icon" href="https://store.steampowered.com/favicon.ico">
 </head>
 <body class="newgame">
     <header style="box-shadow: 0 25px 45px rgb(50, 50, 52); height: 4.6em;">
-        <a href="index.php"><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em" style="margin-top:0.7em"></a>
+        <a href="index.php"><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em" style="margin-top:0.8em; margin-left: -0.55em;"></a>
     </header>
     
     <form action="create.php" method="POST" enctype="multipart/form-data" class="add" id="add">
@@ -18,7 +18,7 @@
         <input type="text" placeholder="Nombre" id="nombre" name="nombre"  class="input inputs">
  
         <label for="file">Añadir imagen</label>
-        <input type="file" placeholder="Imagen" name="imagen" class="input">
+        <input type="file" placeholder="Imagen" name="imagen" class="input inputs">
         
         <textarea name="desc" id="desc" name="desc"  class="input inputs" placeholder="Ingrese una descripcion" cols="10" rows="8" wrap="hard"></textarea>
 

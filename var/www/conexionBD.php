@@ -3,7 +3,7 @@ function connect(){
     $host = '127.0.0.1';
     $dbname = 'juegos_online';
     $user = 'root';
-    $pass = 'andyholes';
+    $pass = '';
 
     try {
 

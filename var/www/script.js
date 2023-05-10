@@ -9,6 +9,9 @@ function validarCampo(inputs) {
                 if (input.value == "") {
                     window.alert("Por favor ingrese un nombre válido.");
                 }
+                else if (input.value > 30) {
+                    window.alert("El nombre supera el maximo de 30 caracteres permitidos.");
+                }
             break;
             case 'desc':
                 if (input.value.length == "" || input.value.length > 255) {

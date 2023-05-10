@@ -15,12 +15,12 @@
     
     <form class="add" id="add" action="create.php" method="POST" enctype="multipart/form-data">
         <h2>Agregar juego nuevo</h2>
-        <input type="text" maxlength="30" placeholder="Nombre" id="nombre" name="nombre"  class="input inputs">
+        <input type="text" maxlength="30" placeholder="Nombre" id="nombre" name="nombre"  class="input inputs" value="<?php echo (isset($_SESSION['inputs']['nombre'])) ? $_SESSION['inputs']['nombre'] : ''?>">
  
         <label for="file">Añadir imagen</label>
-        <input type="file" placeholder="Imagen" name="img" class="input inputs">
+        <input type="file" placeholder="Imagen" name="img" class="input inputs" value="<?php echo (isset($_SESSION['inputs']['img'])) ? $_SESSION['inputs']['img'] : ''?>">
         
-        <textarea name="desc" id="desc" name="desc"  class="input inputs" placeholder="Ingrese una descripcion" cols="10" rows="8" wrap="hard"></textarea>
+        <textarea name="desc" id="desc" class="input inputs" placeholder="Ingrese una descripcion" cols="10" rows="8" wrap="hard" value="<?php echo (isset($_SESSION['inputs']['desc'])) ? $_SESSION['inputs']['desc'] : ''?>"></textarea>
 
         <select id="plataforma" name="plat" class="input inputs">
             <option value="">Selecciona una plataforma</option>
@@ -37,21 +37,21 @@
             <option value="4">Estrategia</option>
         </select> 
         
-        <input type="url" placeholder="https://www.example.com" name="url" id="url" class="input inputs">
+        <input type="url" placeholder="https://www.example.com" name="url" id="url" class="input inputs" value="<?php echo (isset($_SESSION['inputs']['url'])) ? $_SESSION['inputs']['url'] : ''?>">
 
         <input type="submit" value="Agregar" class="boton">
     </form>
     <a href="index.php"><button class="boton">Volver</button></a>
 
     <?php 
-        if(isset($_GET['submit'])) {
-            $nombre = $_GET['nombre'];
-            $desc = $_GET['desc'];
-            $plataforma = $_GET['plat'];
-            $url = $_GET['url'];
-        }
-
+        session_start();
         include("validar.php");
+
+        if ($_SESSION['error-nombre']) {echo "Por favor ingrese un nombre válido";}
+        if ($_SESSION['error-desc']) {echo "Por favor ingrese una descripcion válida";}
+        if ($_SESSION['error-plat']) {echo "Por favor ingrese una plataforma válida";}
+        if ($_SESSION['error-url']) {echo "Por favor ingrese una URL válida";}
+        if ($_SESSION['error-img']) {echo "Por favor ingrese una imagen";}
     ?>
 
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>

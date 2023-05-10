@@ -104,6 +104,12 @@
                     echo "</ul></div>";
                 }
             }
+
+            session_start();
+
+            if (isset($_SESSION['validado'])) {
+                echo $_SESSION['validado']
+            }
         ?>
     </div>
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>

@@ -10,11 +10,11 @@
     $type = $_FILES['imagen']['type'];
 
     $query = "INSERT INTO juegos (nombre, imagen, tipo_imagen, descripcion, url, id_genero, id_plataforma) VALUES ('$nombre', '$image', '$type', '$desc', '$url', '$genero', '$plat')";
-    
+
     $con = connect();
     $con -> beginTransaction();
     $con->exec($query);
-    header("Location: index.php?msg=Juego creado correctamente");
+    header("Location: index.php");
     $con->commit();
     $con=null;
 ?>

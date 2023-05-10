@@ -16,32 +16,32 @@
     <form class="filters" action="index.php" method="GET">
         <p>Buscar juego:</p>
 
-        <input name="nombre" type="text" placeholder="Nombre" class="text-input" value="<?php echo $_GET['nombre']?>">
+        <input name="nombre" type="text" placeholder="Nombre" class="text-input" value="<?php echo $_GET['nombre'] ?? "";?>">
         
         <?php 
             include ('conexionBD.php');
             $con = connect();
             $plat = $con -> query("SELECT * FROM plataformas"); ?>
             <select name="plataforma" class="input">
-            <option value=>Plataforma</option>        
+            <option value="">Plataforma</option>        
             <?php while($row = $plat -> fetch(PDO::FETCH_ASSOC)){?><option
-            <?php if ($_GET['plataforma'] == $row["id"]) { ?>selected="true" <?php }; ?>value="<?php echo $row['id'];?>"><?php echo $row["nombre"];?>
+            value="<?php echo $row['id'];?>" <?php if (isset($_GET['plataforma']) && ($_GET['plataforma'] == $row['id'])){echo 'selected';}?>><?php echo $row['nombre'];?>
             </option>
             <?php }; ?>
         </select> 
         <?php 
             $genres = $con -> query("SELECT * FROM generos"); ?>
             <select name="genero" class="input">
-            <option value=>Genero</option>
+            <option value="">Genero</option>
             <?php while($row = $genres -> fetch(PDO::FETCH_ASSOC)){?><option 
-            <?php if ($_GET['genero'] == $row["id"]) { ?>selected="true" <?php }; ?>value="<?php echo $row['id'];?>"><?php echo $row["nombre"];?>
+            value="<?php echo $row['id'];?>" <?php if (isset($_GET['genero']) && ($_GET['genero'] == $row["id"])) { echo 'selected';}?>><?php echo $row['nombre'];?>
             </option>
             <?php }; ?>  
         </select>
         <select id="ordenar" name="ordenar">
             <option value="">Ordenar</option>
-            <option <?php if ($_GET['ordenar'] == "ASC") { ?>selected="true" <?php }; ?>value="ASC">A-Z</option>
-            <option <?php if ($_GET['ordenar'] == "DESC") { ?>selected="true" <?php }; ?>value="DESC">Z-A</option>
+            <option value="ASC" <?php if (isset($_GET['ordenar']) && ($_GET['ordenar'] == 'ASC')){echo 'selected';}?>>A-Z</option>
+            <option value="DESC"<?php if (isset($_GET['ordenar']) && ($_GET['ordenar'] == 'DESC')){echo 'selected';}?>>Z-A</option>
         </select>
         <input type="submit" value="Filtrar" class="boton">
         <a href="index.php"><input type="button" value="Limpiar Filtros" class="boton" style="padding: 0.3em 0.6em"></a>
@@ -57,12 +57,7 @@
                 <li><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam ullam aperiam est deleniti quidem debitis expedita a quibusdam facere sint. Placeat minus qui voluptatibus ipsa? Illo eum ducimus consequuntur rem?</p></li>
             </ul>
         </div> -->
-        <?php
-            $nombre = $_GET["nombre"];
-            $genero = $_GET["genero"];
-            $plataforma = $_GET["plataforma"];
-            $ordenar = $_GET["ordenar"];
-             
+        <?php         
             $con = connect();
             loadData();
             $query = "SELECT J.nombre, descripcion, imagen, tipo_imagen, url, G.nombre AS genero, P.nombre as plataforma
@@ -71,19 +66,33 @@
             ON J.id_genero = G.id
             JOIN plataformas P 
             ON J.id_plataforma = P.id";
-            if ($nombre !="" OR $genero !="" OR $plat=""){
+
+            $reciboNombre = (isset($_GET['nombre']) && ($_GET['nombre'] != ""));
+            $reciboGenero = (isset($_GET['genero']) && ($_GET['genero'] != ""));
+            $reciboPlataforma = (isset($_GET['plataforma']) && ($_GET['plataforma'] != ""));
+            $reciboOrden = (isset($_GET['ordenar']) && ($_GET['ordenar'] != ""));
+
+            if ($reciboNombre) $nombre = $_GET['nombre'];
+            if ($reciboGenero) $genero = $_GET['genero'];
+            if ($reciboPlataforma) $plataforma = $_GET['plataforma'];
+            if ($reciboOrden) $orden = $_GET['ordenar'];
+
+            if ($reciboNombre || $reciboGenero || $reciboPlataforma){
                 $query .= " WHERE ";
             }
-            if ($nombre != ""){
-                $query .= 'J.nombre LIKE "%'.$nombre.'%"';}
-            if ($genero != ""){
-                if ($nombre != "") {$query .= ' AND ';}
-                $query .= 'J.id_genero LIKE "'.$genero.'"';}
-            if ($plataforma != ""){
-                if ($nombre != "" OR $genero != "") {$query .= ' AND ';}
-                $query .= 'J.id_plataforma LIKE "'.$plataforma.'"';}
-            if ($ordenar == "ASC" or $ordenar == "DESC"){
-                $query .= ' ORDER BY J.nombre '.$ordenar;}
+            if ($reciboNombre){
+                $query .= 'J.nombre LIKE "%'. $nombre .'%"';}
+
+            if ($reciboGenero){
+                if ($reciboNombre) {$query .= ' AND ';}
+                $query .= 'J.id_genero = '. $genero;}
+
+            if ($reciboPlataforma){
+                if (($reciboNombre)  || ($reciboGenero)) {$query .= ' AND ';}
+                $query .= 'J.id_plataforma = '. $plataforma;}
+                
+            if (($reciboOrden) && (($orden == "ASC") || ($orden == "DESC"))){
+                $query .= ' ORDER BY J.nombre '. $orden;}
             
             $select = $con->prepare($query);
             $select->execute();

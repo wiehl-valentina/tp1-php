@@ -103,21 +103,22 @@
             
             $select = $con->prepare($query);
             $select->execute();
-            if ($select->rowCount() == 0){
-                echo '<div class="item" style="padding: 1em 5em; text-align:center"><h1>No hay resultados</h1></div>';
-            }else{
-                while($row = $select->fetch(PDO::FETCH_ASSOC)){
-                    echo '<div class="item">';
-                    echo '<img src="data:'.$row['tipo_imagen'].';base64,'.$row['imagen'].'">';
-                    echo "<ul><li><h2>".$row['nombre']."</h2></li>";
-                    echo "<li><p>".$row['genero']."</p></li>";
-                    echo "<li><p>".$row['plataforma']."</p></li>";
-                    echo '<li><a href="'.$row['url'].'" target="blank">Sitio web</a></li>';
-                    echo "<li><p>".$row['descripcion']."</p></li>";
-                    echo "</ul></div>";
-                }
-            }
-        ?>
+            if ($select->rowCount() == 0){?>
+                <div class="item" style="padding: 1em 5em; text-align:center"><h1>No hay resultados</h1></div>
+            <?php }else{
+                while($row = $select->fetch(PDO::FETCH_ASSOC)){ ?>
+                <div class="item">
+                    <img src="data:<?php echo $row['tipo_imagen']?>;base64,<?php echo $row['imagen']?>">
+                    <ul>
+                        <li><h2><?php echo $row['nombre']?></h2></li>
+                        <li><p><?php echo $row['genero']?></p></li>
+                        <li><p><?php echo $row['plataforma']?></p></li>
+                        <li><a href="<?php echo $row['url']?>" target="blank">Sitio web</a></li>
+                        <li><p><?php echo $row['descripcion']?></p></li>
+                    </ul>
+                </div>
+                <?php }
+            } ?>
     </div>
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
 </body>

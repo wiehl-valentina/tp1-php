@@ -46,6 +46,13 @@
         <input type="submit" value="Filtrar" class="boton">
         <a href="index.php"><input type="button" value="Limpiar Filtros" class="boton" style="padding: 0.3em 0.6em"></a>
     </form>
+
+    <?php
+        session_start();
+        if (isset($_SESSION['exito'])){?>
+            ?> <h1 style='color:white;background:black;width:100vw;text-align:center;'><?php echo $_SESSION['exito'];?></h1>
+    <?php session_destroy();}?>
+
     <div class="lista">
         <!-- <div class="item">
             <img src="https://media.steampowered.com/apps/csgo/blog/images/fb_image.png?v=6" alt="CS:GO">

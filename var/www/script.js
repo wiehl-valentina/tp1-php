@@ -29,7 +29,7 @@ function validarCampos(e, input){
                     errorMsg+="El archivo cargado no es una imagen valida!\n";
                 }
             break;
-            case 'desc':
+            case 'descripcion':
                 if (input.value.length == 0) {
                     e.preventDefault();
                     errorMsg+="Por favor ingrese una descripcion!\n";
@@ -40,7 +40,7 @@ function validarCampos(e, input){
                     errorMsg+="La descripcion supera el máximo de 255 caracteres permitidos!\n";
                 }
             break;
-            case 'plat':
+            case 'plataforma':
                 if (input.value == "") {
                     e.preventDefault();
                     errorMsg+="Por favor seleccione una plataforma válida!\n";

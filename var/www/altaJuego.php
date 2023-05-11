@@ -42,7 +42,6 @@
         <?php 
         $genres = $con -> query("SELECT * FROM generos"); ?>
         <select name="genero" class="input">
-        <option value="">Genero</option>
         <?php while($row = $genres -> fetch(PDO::FETCH_ASSOC)){?><option 
         value="<?php echo $row['id'];?>" <?php if (isset($_POST['genero']) && ($_POST['genero'] == $row["id"])) { echo 'selected';}?>><?php echo $row['nombre'];?>
         </option>
@@ -108,10 +107,12 @@
     }
 
     //No valido el genero
-    if (!empty($_POST['genero'])) {$genero = $_POST["genero"];}
+    $genero = $_POST["genero"];
 
     if ($hasErrors){echo 'Por favor complete los campos requeridos';}
     else{
+        session_start();
+        $_SESSION['exito'] = "El juego se ha guardado correctamente";
         $query = "INSERT INTO juegos (nombre, imagen, tipo_imagen, descripcion, url, id_genero, id_plataforma) VALUES ('$nombre', '$imagen', '$type', '$descripcion', '$url', '$genero', '$plataforma')";
         $con->beginTransaction();
         $con->exec($query);

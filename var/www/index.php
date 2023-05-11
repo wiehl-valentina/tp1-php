@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,7 +52,6 @@
     </form>
 
     <?php
-        session_start();
         if (isset($_SESSION['exito'])){?>
             ?> <h1 style='color:white;background:black;width:100vw;text-align:center;'><?php echo $_SESSION['exito'];?></h1>
     <?php session_destroy();}?>

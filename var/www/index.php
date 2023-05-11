@@ -53,7 +53,7 @@
 
     <?php
         if (isset($_SESSION['exito'])){?>
-            ?> <h1 style='color:white;background:black;width:100vw;text-align:center;'><?php echo $_SESSION['exito'];?></h1>
+            <h1 style='color:white;background:black;width:100vw;text-align:center;margin:1.4em 0 -0.4em'><?php echo $_SESSION['exito'];?></h1>
     <?php session_destroy();}?>
 
     <div class="lista">

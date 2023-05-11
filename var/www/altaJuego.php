@@ -1,3 +1,8 @@
+<?php 
+            include ('conexionBD.php');
+            $con = connect();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,40 +18,110 @@
         <a href="index.php"><img src="https://community.akamai.steamstatic.com/public/shared/images/responsive/header_logo.png" height="50em" style="margin-top:0.8em; margin-left: -0.55em;"></a>
     </header>
     
-    <form action="create.php" method="POST" enctype="multipart/form-data" class="add" id="add">
+    <form action="altaJuego.php" method="POST" enctype="multipart/form-data" class="add" id="add">
         <h2>Agregar juego nuevo</h2>
-        <input type="text" placeholder="Nombre" id="nombre" name="nombre"  class="input inputs">
- 
+        <input type="text" placeholder="Nombre" id="nombre" name="nombre"  class="input inputs" value="<?php echo isset($_POST['nombre']) ? $_POST['nombre'] : ''; ?>">
+
         <label for="file">Añadir imagen</label>
         <input type="file" placeholder="Imagen" name="imagen" class="input inputs">
         
-        <textarea name="desc" id="desc" name="desc"  class="input inputs" placeholder="Ingrese una descripcion" cols="10" rows="8" wrap="hard"></textarea>
+        <textarea name="descripcion" id="desc"  class="input inputs" placeholder="Ingrese una descripcion" cols="10" rows="8" wrap="hard"><?php echo isset($_POST['descripcion']) ? $_POST['descripcion'] : ''; ?></textarea>
 
         <?php 
-            include ('conexionBD.php');
-            $con = connect();
-            $plat = $con -> query("SELECT * FROM plataformas");
-            echo '<select id="plataforma" name="plat" class="input inputs">';
-            echo '<option value="">Seleccione una plataforma</option>';        
-            while($row = $plat -> fetch(PDO::FETCH_ASSOC)){ 
-            echo '<option value="' . $row['id'] .'">' . $row["nombre"] . '</option>';
-            } 
-            echo '</select>';
-        ?> 
-
-        <input type="url" placeholder="https://www.example.com" name="url" id="url" class="input inputs">
+            $plat = $con -> query("SELECT * FROM plataformas"); ?>
+            <select name="plataforma" class="input">
+            <option value="">Plataforma</option>        
+            <?php while($row = $plat -> fetch(PDO::FETCH_ASSOC)){?><option
+            value="<?php echo $row['id'];?>" <?php if (isset($_POST['plataforma']) && ($_POST['plataforma'] == $row['id'])){echo 'selected';}?>><?php echo $row['nombre'];?>
+            </option>
+            <?php }; ?>
+        </select> 
+            
+        <input type="url" placeholder="https://www.example.com" name="url" id="url" class="input inputs" value="<?php echo isset($_POST['url']) ? $_POST['url'] : ''; ?>">
 
         <?php 
-            $genres = $con -> query("SELECT * FROM generos");
-            echo '<select id="genero" name="genero" class="input inputs">';           
-            while($row = $genres -> fetch(PDO::FETCH_ASSOC)){ 
-             echo '<option value="' . $row['id'] .'">' . $row["nombre"] . '</option>';
-            }
-            echo '</select>';
-        ?> 
+        $genres = $con -> query("SELECT * FROM generos"); ?>
+        <select name="genero" class="input">
+        <option value="">Genero</option>
+        <?php while($row = $genres -> fetch(PDO::FETCH_ASSOC)){?><option 
+        value="<?php echo $row['id'];?>" <?php if (isset($_POST['genero']) && ($_POST['genero'] == $row["id"])) { echo 'selected';}?>><?php echo $row['nombre'];?>
+        </option>
+        <?php }; ?>  
+        </select>
+
         <input type="submit" value="Agregar Juego" id="agregar" class="boton">
     </form>
     <a href="index.php"><button class="boton-ppal">Volver</button></a>
+    
+    <?php 
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $hasErrors = false;
+
+    if (empty($_POST["nombre"])) {
+    $nombreErr = "El nombre es requerido";
+    $hasErrors = true;
+    } else {
+    $nombre = htmlspecialchars($_POST["nombre"]);
+    }
+    
+    // Validar el campo imagen
+    if (empty($_FILES["imagen"]["tmp_name"])) {
+    $imagenErr = "La imagen es requerida";
+    $hasErrors = true;
+    } else {
+        $imagen = base64_encode(file_get_contents($_FILES['imagen']['tmp_name']));
+        $type = $_FILES['imagen']['type'];
+    }
+    
+    // Validar el campo descripción
+    if (empty($_POST["descripcion"])) {
+    $descripcionErr = "La descripción es requerida";
+    $hasErrors = true;
+    } else {
+    $descripcion = $_POST["descripcion"];
+    if (strlen($descripcion) > 255) {
+        $descripcionErr = "La descripción debe tener máximo 255 caracteres";
+        $hasErrors = true;
+    }
+    }
+    
+    // Validar el campo URL
+    if (empty($_POST["url"])) {
+    $urlErr = "La URL es requerida";
+    $hasErrors = true;
+    } else {
+        $url = $_POST["url"];
+        if (strlen($url) > 80) {
+            $descripcionErr = "La url debe tener máximo 80 caracteres";
+            $hasErrors = true;
+        }
+    }
+    
+    // Validar el campo plataforma
+    if (empty($_POST["plataforma"])) {
+    $plataformaErr = "La plataforma es requerida";
+    $hasErrors = true;
+    } else {
+    $plataforma = $_POST["plataforma"];
+    }
+
+    //No valido el genero
+    if (!empty($_POST['genero'])) {$genero = $_POST["genero"];}
+
+    if ($hasErrors){echo 'Por favor complete los campos requeridos';}
+    else{
+        $query = "INSERT INTO juegos (nombre, imagen, tipo_imagen, descripcion, url, id_genero, id_plataforma) VALUES ('$nombre', '$imagen', '$type', '$descripcion', '$url', '$genero', '$plataforma')";
+        $con->beginTransaction();
+        $con->exec($query);
+        header("Location: index.php?msg='Juego creado correctamente'");
+        $con->commit();
+        $con=null;
+        }
+    }
+    ?>
+
     <footer>Andres Hoyos Garcia | Valentina Wiehl - 2023</footer>
     <script src="script.js" type="text/javascript"></script>
 </body>

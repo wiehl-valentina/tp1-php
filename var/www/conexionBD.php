@@ -3,7 +3,7 @@ function connect(){
     $host = '127.0.0.1';
     $dbname = 'juegos_online';
     $user = 'root';
-    $pass = 'andyholes';
+    $pass = '';
 
     try {
 
@@ -24,11 +24,12 @@ function loadData(){
 
     $genero_vacios = $con->query('SELECT id FROM generos;');
     if ($genero_vacios->rowCount() == 0) {
-        $con->exec("INSERT INTO generos (id, nombre) VALUES (5, 'Sin genero')");
-        $con->exec("INSERT INTO generos (id, nombre) VALUES (1, 'Disparos')");
-        $con->exec("INSERT INTO generos (id, nombre) VALUES (2, 'Accion')");
-        $con->exec("INSERT INTO generos (id, nombre) VALUES (3, 'Terror')");
-        $con->exec("INSERT INTO generos (id, nombre) VALUES (4, 'Estrategia')");
+        $con->exec("INSERT INTO generos (id, nombre) VALUES (1, 'Sin genero')");
+        $con->exec("INSERT INTO generos (id, nombre) VALUES (2, 'Disparos')");
+        $con->exec("INSERT INTO generos (id, nombre) VALUES (3, 'Accion')");
+        $con->exec("INSERT INTO generos (id, nombre) VALUES (4, 'Terror')");
+        $con->exec("INSERT INTO generos (id, nombre) VALUES (5, 'Estrategia')");
+        $con->exec("INSERT INTO generos (id, nombre) VALUES (6, 'Supervivencia')");
         echo "<h1 style='
         color:white;
         background:black;
